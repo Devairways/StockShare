@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell shares
+{% endblock %}
+
+{% block main %}
+    <form action="/sell" method="post">
+        <div class="form-group">
+            <select autocomplete="off" autofocus class="form-control" name="symbol" placeholder="Symbol..">
+                {% for stock in stocks %}
+                <option value="{{stock['symbol']}}">{{stock["symbol"]}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" class="form-control" type="number"  id="shares" name="shares" placeholder="Shares.."/>
+        </div>
+        <button class="btn btn-primary" type="submit">sell</button>
+    </form>
+{% endblock %}
+
+{% block script%}
+<script>
+    document.queryselector("form").onSubmit(()=>{
+        if (document.queryselector("#shares").value < 0){
+            alert("please fill in an valid number");
+            return false;
+        }
+        return true;
+    });
+
+</script>
+{% endblock%}

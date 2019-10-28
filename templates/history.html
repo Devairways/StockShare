@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+ <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Shares</th>
+                <th>Action</th>
+                <th>Price</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in history %}
+            <tr>
+                <td>{{stock["symbol"]}}</td>
+                <td>{{stock["shares"]}}</td>
+                <td>{{stock["action"]}}</td>
+                <td>${{stock["price"]}}</td>
+                <td>{{stock["date"]}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+
+    </table>
+{% endblock %}
+
+
+{% block script%}
+<script>
+    document.queryselector("form").onSubmit(()=>{
+        if (document.queryselector("shares").value < 0){
+            return false;
+        }
+        return true;
+    })
+
+</script>
+{% endblock%}

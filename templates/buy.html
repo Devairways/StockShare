@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy shares
+{% endblock %}
+
+{% block main %}
+    <form action="/buy" method="post" onsubmit="check()">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control"  id="symbol" type="text"  name="symbol" placeholder="Symbol.."/>
+        </div>
+        <div class="form-group">
+            <input autocomplete="off"  class="form-control" min="1" id="shares" type="number"  name="shares" placeholder="Shares.."/>
+        </div>
+        <button class="btn btn-primary" type="submit">Buy</button>
+    </form>
+    {% if cash: %}
+       <h3>cash = {{cash[0].cash}}</h3>
+    {% endif %}
+{% endblock %}
+{% block script %}
+
+
+{% endblock %}
